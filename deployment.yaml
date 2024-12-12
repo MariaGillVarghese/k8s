@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: image-organizer-deployment
+  labels:
+    app: image-organizer
+spec:
+  replicas: 1  # Number of replicas, adjust as needed
+  selector:
+    matchLabels:
+      app: image-organizer
+  template:
+    metadata:
+      labels:
+        app: image-organizer
+    spec:
+      containers:
+      - name: image-organizer
+        image: image-organizer:latest  # Ensure you push your Docker image to a registry (e.g., DockerHub) and reference it here
+        env:
+        - name: FILE_DIRECTORY
+          value: "/usr/src/app/Dir"
+        volumeMounts:
+        - name: dir-volume
+          mountPath: /usr/src/app/Dir
+        command: ["python", "app.py"]
+      volumes:
+      - name: dir-volume
+        hostPath:
+          path: /path/to/local/Dir  # Replace with the local directory path on your host or set up a persistent volume if needed

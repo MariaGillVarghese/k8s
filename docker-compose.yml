@@ -1,0 +1,9 @@
+services:
+  image-organizer:
+    build: .
+    container_name: image-organizer-container
+    environment:
+      - FILE_DIRECTORY=/usr/src/app/Dir
+    volumes:
+      - ./Dir:/usr/src/app/Dir
+    command: ["python", "app.py"]
