@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: image-organizer
-        image: image-organizer:latest  # Ensure you push your Docker image to a registry (e.g., DockerHub) and reference it here
+        image: 381492022241.dkr.ecr.eu-north-1.amazonaws.com/image-organizer:latest
         env:
         - name: FILE_DIRECTORY
           value: "/usr/src/app/Dir"
